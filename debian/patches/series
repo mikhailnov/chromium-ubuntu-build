@@ -47,3 +47,4 @@ dont-run-code-formatting.patch
 gn-link-with-libc.patch
 fix-build-errors.patch
 rename-python-to-python2.patch
+disable-vp8-vp9.diff

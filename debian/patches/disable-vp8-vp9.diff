@@ -1,0 +1,67 @@
+diff --git a/media/base/video_codecs.h b/media/base/video_codecs.h
+index f81a273096..8dea933b5e 100644
+--- a/media/base/video_codecs.h
++++ b/media/base/video_codecs.h
+@@ -26,8 +26,8 @@ enum VideoCodec {
+   kCodecMPEG2,
+   kCodecMPEG4,
+   kCodecTheora,
+-  kCodecVP8,
+-  kCodecVP9,
++  kCodecVP8 = 0,
++  kCodecVP9 = 0,
+   kCodecHEVC,
+   kCodecDolbyVision,
+   kCodecAV1,
+@@ -65,14 +65,14 @@ enum VideoCodecProfile {
+   H264PROFILE_STEREOHIGH = 9,
+   H264PROFILE_MULTIVIEWHIGH = 10,
+   H264PROFILE_MAX = H264PROFILE_MULTIVIEWHIGH,
+-  VP8PROFILE_MIN = 11,
++  VP8PROFILE_MIN = -1,
+   VP8PROFILE_ANY = VP8PROFILE_MIN,
+   VP8PROFILE_MAX = VP8PROFILE_ANY,
+-  VP9PROFILE_MIN = 12,
++  VP9PROFILE_MIN = -1,
+   VP9PROFILE_PROFILE0 = VP9PROFILE_MIN,
+-  VP9PROFILE_PROFILE1 = 13,
+-  VP9PROFILE_PROFILE2 = 14,
+-  VP9PROFILE_PROFILE3 = 15,
++  VP9PROFILE_PROFILE1 = -1,
++  VP9PROFILE_PROFILE2 = -1,
++  VP9PROFILE_PROFILE3 = -1,
+   VP9PROFILE_MAX = VP9PROFILE_PROFILE3,
+   HEVCPROFILE_MIN = 16,
+   HEVCPROFILE_MAIN = HEVCPROFILE_MIN,
+diff --git a/media/remoting/media_remoting_rpc.proto b/media/remoting/media_remoting_rpc.proto
+index bea8599a53..1fb8e99db4 100644
+--- a/media/remoting/media_remoting_rpc.proto
++++ b/media/remoting/media_remoting_rpc.proto
+@@ -151,8 +151,8 @@ message VideoDecoderConfig {
+     kCodecMPEG2 = 3;
+     kCodecMPEG4 = 4;
+     kCodecTheora = 5;
+-    kCodecVP8 = 6;
+-    kCodecVP9 = 7;
++    kCodecVP8 = 0;
++    kCodecVP9 = 0;
+     kCodecHEVC = 8;
+     kCodecDolbyVision = 9;
+     kCodecAV1 = 10;
+@@ -173,11 +173,11 @@ message VideoDecoderConfig {
+     H264PROFILE_SCALABLEHIGH = 8;
+     H264PROFILE_STEREOHIGH = 9;
+     H264PROFILE_MULTIVIEWHIGH = 10;
+-    VP8PROFILE_ANY = 11;
+-    VP9PROFILE_PROFILE0 = 12;
+-    VP9PROFILE_PROFILE1 = 13;
+-    VP9PROFILE_PROFILE2 = 14;
+-    VP9PROFILE_PROFILE3 = 15;
++    VP8PROFILE_ANY = -1;
++    VP9PROFILE_PROFILE0 = -1;
++    VP9PROFILE_PROFILE1 = -1;
++    VP9PROFILE_PROFILE2 = -1;
++    VP9PROFILE_PROFILE3 = -1;
+     HEVCPROFILE_MAIN = 16;
+     HEVCPROFILE_MAIN10 = 17;
+     HEVCPROFILE_MAIN_STILL_PICTURE = 18;

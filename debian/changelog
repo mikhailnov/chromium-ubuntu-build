@@ -1,3 +1,12 @@
+chromium-browser (83.0.4103.7-0ubuntu1~novp89~20.04.1) focal; urgency=medium
+
+  * Hack: patch: disable vp8 and vp9 video codecs
+
+    Trying to w/a https://github.com/bigbluebutton/bigbluebutton/issues/9233 by forcing H264 with VA-API
+    on some specific client machines
+
+ -- Mikhail Novosyolov <mikhailnov@dumalogiya.ru>  Thu, 07 May 2020 23:49:14 +0300
+
 chromium-browser (83.0.4103.7-0ubuntu1~ppa6~20.04.1) focal; urgency=low
 
   * Fix build errors.
