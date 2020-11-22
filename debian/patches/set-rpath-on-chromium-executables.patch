@@ -2,10 +2,10 @@ Description: set rpath on chromium-browser and v8_context_snapshot_generator exe
 Author: Olivier Tilloy <olivier.tilloy@canonical.com>
 Bug-Ubuntu: https://launchpad.net/bugs/1718885
 
-Index: dev/chrome/BUILD.gn
-===================================================================
---- dev.orig/chrome/BUILD.gn
-+++ dev/chrome/BUILD.gn
+diff --git a/chrome/BUILD.gn b/chrome/BUILD.gn
+index 7913e9c6b..7ba07a2e1 100644
+--- a/chrome/BUILD.gn
++++ b/chrome/BUILD.gn
 @@ -298,7 +298,7 @@ if (!is_android && !is_mac) {
  
      # ChromeOS by design is safe to have rpath=$ORIGIN. This simplifies shared
@@ -15,11 +15,11 @@ Index: dev/chrome/BUILD.gn
        configs += [ "//build/config/gcc:rpath_for_built_shared_libraries" ]
      }
  
-Index: dev/tools/v8_context_snapshot/BUILD.gn
-===================================================================
---- dev.orig/tools/v8_context_snapshot/BUILD.gn
-+++ dev/tools/v8_context_snapshot/BUILD.gn
-@@ -109,6 +109,10 @@ if (use_v8_context_snapshot) {
+diff --git a/tools/v8_context_snapshot/BUILD.gn b/tools/v8_context_snapshot/BUILD.gn
+index c238e7e38..5ace1fca4 100644
+--- a/tools/v8_context_snapshot/BUILD.gn
++++ b/tools/v8_context_snapshot/BUILD.gn
+@@ -112,6 +112,10 @@ if (use_v8_context_snapshot) {
        "//v8",
      ]
  

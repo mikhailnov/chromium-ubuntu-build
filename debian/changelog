@@ -1,3 +1,13 @@
+chromium-browser (87.0.4280.66-1~focal0) focal; urgency=medium
+
+  * New stable upstream version 87.0.4280.66
+  * Set API keys from Ubuntu
+  * Removed epoch
+    (I control which repo Chroimium is installed from by nastr-repos, https://gitlab.com/mikahilnov/nastr)
+  * debian/control.standard.focal -> debian/control
+
+ -- Mikhail Novosyolov <mikhailnov@dumalogiya.ru>  Sun, 22 Nov 2020 21:30:11 +0300
+
 chromium-browser (1:87.0.4280.20-0ubuntu1~ppa1~20.10.1) groovy; urgency=low
 
   * New upstream version 87.0.4280.20

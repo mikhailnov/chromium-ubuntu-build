@@ -1,5 +1,14 @@
 #!/usr/bin/make -f
 
+# Set up Google API keys, see http://www.chromium.org/developers/how-tos/api-keys .
+# Note: these are for Ubuntu use ONLY. For your own distribution,
+# please get your own set of keys.
+# Permission to add API keys, from Paweł Hajdan, To chad.miller@canonical.com
+# msgid: CAADNaOFSFoch68NM1SGpCTRXqmspyKQgUPUtsF7SGRsRXiHZcg@mail.gmail.com
+GOOGLEAPI_APIKEY_UBUNTU := AIzaSyDGQzx0c0ptZVDriLi9Wblo2voeLnmPq-o
+GOOGLEAPI_CLIENTID_UBUNTU := 424119844901-tilod0e1nm0dt85e1evrdfp3cc3ec01d.apps.googleusercontent.com
+GOOGLEAPI_CLIENTSECRET_UBUNTU := WCCejhqORuxKG272GAWxsPIU
+
 DEBIAN_NAME		:= $(shell dpkg-parsechangelog | sed -n 's/^Source: *\(.*\)$$/\1/ p')
 DEBIAN_VERSION		:= $(shell dpkg-parsechangelog | sed -n 's/^Version: *\(.*\)$$/\1/ p')
 DEBIAN_UPSTREAM_VERSION	:= $(shell echo $(DEBIAN_VERSION) | sed 's/^\(.*\)-[^-]*$$/\1/')

@@ -36,11 +36,11 @@ Change-Id: Ifbbf5c9e5221a8b5733fc6d4d0cf984a1f103171
 Signed-off-by: Daniel Charles <daniel.charles@intel.com>
 ---
 
-Index: dev/chrome/browser/about_flags.cc
-===================================================================
---- dev.orig/chrome/browser/about_flags.cc
-+++ dev/chrome/browser/about_flags.cc
-@@ -2869,7 +2869,7 @@ const FeatureEntry kFeatureEntries[] = {
+diff --git a/chrome/browser/about_flags.cc b/chrome/browser/about_flags.cc
+index 78bf907f9..12c12cf17 100644
+--- a/chrome/browser/about_flags.cc
++++ b/chrome/browser/about_flags.cc
+@@ -2870,7 +2870,7 @@ const FeatureEntry kFeatureEntries[] = {
          "disable-accelerated-video-decode",
          flag_descriptions::kAcceleratedVideoDecodeName,
          flag_descriptions::kAcceleratedVideoDecodeDescription,
@@ -49,7 +49,7 @@ Index: dev/chrome/browser/about_flags.cc
          SINGLE_DISABLE_VALUE_TYPE(switches::kDisableAcceleratedVideoDecode),
      },
  #endif  // defined(OS_LINUX) && !defined(OS_CHROMEOS) && !defined(OS_ANDROID)
-@@ -3335,10 +3335,10 @@ const FeatureEntry kFeatureEntries[] = {
+@@ -3336,10 +3336,10 @@ const FeatureEntry kFeatureEntries[] = {
       flag_descriptions::kWebXrForceRuntimeDescription, kOsDesktop,
       MULTI_VALUE_TYPE(kWebXrForceRuntimeChoices)},
  #endif  // ENABLE_VR
@@ -62,11 +62,11 @@ Index: dev/chrome/browser/about_flags.cc
       SINGLE_DISABLE_VALUE_TYPE(switches::kDisableAcceleratedMjpegDecode)},
  #endif  // OS_CHROMEOS
      {"system-keyboard-lock", flag_descriptions::kSystemKeyboardLockName,
-Index: dev/chrome/browser/flag_descriptions.cc
-===================================================================
---- dev.orig/chrome/browser/flag_descriptions.cc
-+++ dev/chrome/browser/flag_descriptions.cc
-@@ -3570,9 +3570,7 @@ const char kVideoToolboxVp9DecodingDescr
+diff --git a/chrome/browser/flag_descriptions.cc b/chrome/browser/flag_descriptions.cc
+index b454cbb3a..48d116e18 100644
+--- a/chrome/browser/flag_descriptions.cc
++++ b/chrome/browser/flag_descriptions.cc
+@@ -3590,9 +3590,7 @@ const char kVideoToolboxVp9DecodingDescription[] =
  
  #endif
  
@@ -77,7 +77,7 @@ Index: dev/chrome/browser/flag_descriptions.cc
  
  const char kAcceleratedMjpegDecodeName[] =
      "Hardware-accelerated mjpeg decode for captured frame";
-@@ -3580,6 +3578,12 @@ const char kAcceleratedMjpegDecodeDescri
+@@ -3600,6 +3598,12 @@ const char kAcceleratedMjpegDecodeDescription[] =
      "Enable hardware-accelerated mjpeg decode for captured frame where "
      "available.";
  
@@ -90,11 +90,11 @@ Index: dev/chrome/browser/flag_descriptions.cc
  const char kAggregatedMlAppRankingName[] = "Rank suggested apps with ML.";
  const char kAggregatedMlAppRankingDescription[] =
      "Use the aggregated ML model to rank the suggested apps.";
-Index: dev/chrome/browser/flag_descriptions.h
-===================================================================
---- dev.orig/chrome/browser/flag_descriptions.h
-+++ dev/chrome/browser/flag_descriptions.h
-@@ -2049,13 +2049,17 @@ extern const char kVideoToolboxVp9Decodi
+diff --git a/chrome/browser/flag_descriptions.h b/chrome/browser/flag_descriptions.h
+index 858a409fe..893398dc8 100644
+--- a/chrome/browser/flag_descriptions.h
++++ b/chrome/browser/flag_descriptions.h
+@@ -2062,13 +2062,17 @@ extern const char kVideoToolboxVp9DecodingDescription[];
  
  #endif  // defined(OS_MAC)
  
@@ -115,10 +115,10 @@ Index: dev/chrome/browser/flag_descriptions.h
  extern const char kAggregatedMlAppRankingName[];
  extern const char kAggregatedMlAppRankingDescription[];
  
-Index: dev/content/gpu/BUILD.gn
-===================================================================
---- dev.orig/content/gpu/BUILD.gn
-+++ dev/content/gpu/BUILD.gn
+diff --git a/content/gpu/BUILD.gn b/content/gpu/BUILD.gn
+index 44aa83dcf..2bda88717 100644
+--- a/content/gpu/BUILD.gn
++++ b/content/gpu/BUILD.gn
 @@ -5,6 +5,7 @@
  import("//build/config/ui.gni")
  import("//gpu/vulkan/features.gni")
@@ -127,7 +127,7 @@ Index: dev/content/gpu/BUILD.gn
  
  # This file depends on the legacy global sources assignment filter. It should
  # be converted to check target platform before assigning source files to the
-@@ -133,4 +134,8 @@ target(link_target_type, "gpu_sources")
+@@ -133,4 +134,8 @@ target(link_target_type, "gpu_sources") {
        (!is_chromecast || is_cast_desktop_build)) {
      configs += [ "//build/config/linux/dri" ]
    }
@@ -136,11 +136,11 @@ Index: dev/content/gpu/BUILD.gn
 +    public_configs = [ "//build/config/linux/libva" ]
 +  }
  }
-Index: dev/media/base/media_switches.cc
-===================================================================
---- dev.orig/media/base/media_switches.cc
-+++ dev/media/base/media_switches.cc
-@@ -827,7 +827,7 @@ bool IsVideoCaptureAcceleratedJpegDecodi
+diff --git a/media/base/media_switches.cc b/media/base/media_switches.cc
+index 0c20d23e2..178253609 100644
+--- a/media/base/media_switches.cc
++++ b/media/base/media_switches.cc
+@@ -827,7 +827,7 @@ bool IsVideoCaptureAcceleratedJpegDecodingEnabled() {
            switches::kUseFakeMjpegDecodeAccelerator)) {
      return true;
    }
@@ -149,11 +149,11 @@ Index: dev/media/base/media_switches.cc
    return true;
  #endif
    return false;
-Index: dev/media/gpu/gpu_video_decode_accelerator_factory.cc
-===================================================================
---- dev.orig/media/gpu/gpu_video_decode_accelerator_factory.cc
-+++ dev/media/gpu/gpu_video_decode_accelerator_factory.cc
-@@ -160,6 +160,8 @@ GpuVideoDecodeAcceleratorFactory::Create
+diff --git a/media/gpu/gpu_video_decode_accelerator_factory.cc b/media/gpu/gpu_video_decode_accelerator_factory.cc
+index a24ee0fe3..6db12a1e5 100644
+--- a/media/gpu/gpu_video_decode_accelerator_factory.cc
++++ b/media/gpu/gpu_video_decode_accelerator_factory.cc
+@@ -160,6 +160,8 @@ GpuVideoDecodeAcceleratorFactory::CreateVDA(
      vda = (this->*create_vda_function)(workarounds, gpu_preferences, media_log);
      if (vda && vda->Initialize(config, client))
        return vda;
@@ -162,7 +162,7 @@ Index: dev/media/gpu/gpu_video_decode_accelerator_factory.cc
    }
  
    return nullptr;
-@@ -218,6 +220,7 @@ GpuVideoDecodeAcceleratorFactory::Create
+@@ -218,6 +220,7 @@ GpuVideoDecodeAcceleratorFactory::CreateVaapiVDA(
      const gpu::GpuDriverBugWorkarounds& workarounds,
      const gpu::GpuPreferences& gpu_preferences,
      MediaLog* media_log) const {
@@ -170,11 +170,11 @@ Index: dev/media/gpu/gpu_video_decode_accelerator_factory.cc
    std::unique_ptr<VideoDecodeAccelerator> decoder;
    decoder.reset(new VaapiVideoDecodeAccelerator(gl_client_.make_context_current,
                                                  gl_client_.bind_image));
-Index: dev/media/gpu/ipc/service/gpu_video_decode_accelerator.cc
-===================================================================
---- dev.orig/media/gpu/ipc/service/gpu_video_decode_accelerator.cc
-+++ dev/media/gpu/ipc/service/gpu_video_decode_accelerator.cc
-@@ -384,6 +384,7 @@ bool GpuVideoDecodeAccelerator::Initiali
+diff --git a/media/gpu/ipc/service/gpu_video_decode_accelerator.cc b/media/gpu/ipc/service/gpu_video_decode_accelerator.cc
+index 34432ca11..a20f0475b 100644
+--- a/media/gpu/ipc/service/gpu_video_decode_accelerator.cc
++++ b/media/gpu/ipc/service/gpu_video_decode_accelerator.cc
+@@ -384,6 +384,7 @@ bool GpuVideoDecodeAccelerator::Initialize(
      LOG(ERROR) << "Failed creating the VDA factory";
      return false;
    }
@@ -182,7 +182,7 @@ Index: dev/media/gpu/ipc/service/gpu_video_decode_accelerator.cc
  
    const gpu::GpuDriverBugWorkarounds& gpu_workarounds =
        stub_->channel()->gpu_channel_manager()->gpu_driver_bug_workarounds();
-@@ -404,6 +405,7 @@ bool GpuVideoDecodeAccelerator::Initiali
+@@ -404,6 +405,7 @@ bool GpuVideoDecodeAccelerator::Initialize(
                 << (config.is_encrypted() ? " with encryption" : "");
      return false;
    }
@@ -190,11 +190,11 @@ Index: dev/media/gpu/ipc/service/gpu_video_decode_accelerator.cc
  
    // Attempt to set up performing decoding tasks on IO thread, if supported by
    // the VDA.
-Index: dev/media/gpu/vaapi/vaapi_wrapper.cc
-===================================================================
---- dev.orig/media/gpu/vaapi/vaapi_wrapper.cc
-+++ dev/media/gpu/vaapi/vaapi_wrapper.cc
-@@ -461,6 +461,11 @@ void VADisplayState::PreSandboxInitializ
+diff --git a/media/gpu/vaapi/vaapi_wrapper.cc b/media/gpu/vaapi/vaapi_wrapper.cc
+index 6a0ae649d..bfd3700bf 100644
+--- a/media/gpu/vaapi/vaapi_wrapper.cc
++++ b/media/gpu/vaapi/vaapi_wrapper.cc
+@@ -461,6 +461,11 @@ void VADisplayState::PreSandboxInitialization() {
        base::File::FLAG_OPEN | base::File::FLAG_READ | base::File::FLAG_WRITE);
    if (drm_file.IsValid())
      VADisplayState::Get()->SetDrmFd(drm_file.GetPlatformFile());
@@ -206,7 +206,7 @@ Index: dev/media/gpu/vaapi/vaapi_wrapper.cc
  }
  
  VADisplayState::VADisplayState()
-@@ -567,10 +572,6 @@ bool VADisplayState::InitializeVaDriver_
+@@ -567,10 +572,6 @@ bool VADisplayState::InitializeVaDriver_Locked() {
  }
  
  bool VADisplayState::InitializeOnce() {
@@ -225,7 +225,7 @@ Index: dev/media/gpu/vaapi/vaapi_wrapper.cc
      // Re-initialize with the new driver.
      va_display_ = nullptr;
      va_initialized_ = false;
-@@ -774,7 +774,7 @@ bool AreAttribsSupported(const base::Loc
+@@ -774,7 +774,7 @@ bool AreAttribsSupported(const base::Lock* va_lock,
      if (attribs[i].type != required_attribs[i].type ||
          (attribs[i].value & required_attribs[i].value) !=
              required_attribs[i].value) {
@@ -234,10 +234,10 @@ Index: dev/media/gpu/vaapi/vaapi_wrapper.cc
                 << vaConfigAttribTypeStr(required_attribs[i].type);
        return false;
      }
-Index: dev/ui/gfx/x/x11.h
-===================================================================
---- dev.orig/ui/gfx/x/x11.h
-+++ dev/ui/gfx/x/x11.h
+diff --git a/ui/gfx/x/x11.h b/ui/gfx/x/x11.h
+index a19c26e01..8da75cc9d 100644
+--- a/ui/gfx/x/x11.h
++++ b/ui/gfx/x/x11.h
 @@ -34,6 +34,7 @@ using Time = unsigned long;
  using GC = struct _XGC*;
  using Display = struct _XDisplay;
@@ -254,7 +254,7 @@ Index: dev/ui/gfx/x/x11.h
  unsigned long XLastKnownRequestProcessed(Display*);
  int (*XSynchronize(Display*, Bool))(Display*);
  int XGetErrorDatabaseText(Display*,
-@@ -68,6 +70,8 @@ int XGetErrorText(Display*, int, char*,
+@@ -68,6 +70,8 @@ int XGetErrorText(Display*, int, char*, int);
  XErrorHandler XSetErrorHandler(XErrorHandler);
  XIOErrorHandler XSetIOErrorHandler(XIOErrorHandler);
  int XStoreName(Display*, Window, const char*);

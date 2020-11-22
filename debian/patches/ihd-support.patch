@@ -1,8 +1,8 @@
-Index: dev/media/gpu/vaapi/vaapi_video_decode_accelerator.cc
-===================================================================
---- dev.orig/media/gpu/vaapi/vaapi_video_decode_accelerator.cc
-+++ dev/media/gpu/vaapi/vaapi_video_decode_accelerator.cc
-@@ -707,7 +707,8 @@ void VaapiVideoDecodeAccelerator::Assign
+diff --git a/media/gpu/vaapi/vaapi_video_decode_accelerator.cc b/media/gpu/vaapi/vaapi_video_decode_accelerator.cc
+index d4c8fabb8..6f641b0bc 100644
+--- a/media/gpu/vaapi/vaapi_video_decode_accelerator.cc
++++ b/media/gpu/vaapi/vaapi_video_decode_accelerator.cc
+@@ -707,7 +707,8 @@ void VaapiVideoDecodeAccelerator::AssignPictureBuffers(
    // |vpp_vaapi_wrapper_| for VaapiPicture to DownloadFromSurface() the VA's
    // internal decoded frame.
    if (buffer_allocation_mode_ != BufferAllocationMode::kNone &&
@@ -12,7 +12,7 @@ Index: dev/media/gpu/vaapi/vaapi_video_decode_accelerator.cc
      if (!vpp_vaapi_wrapper_) {
        vpp_vaapi_wrapper_ = VaapiWrapper::Create(
            VaapiWrapper::kVideoProcess, VAProfileNone,
-@@ -1203,6 +1204,11 @@ VaapiVideoDecodeAccelerator::GetSupporte
+@@ -1203,6 +1204,11 @@ VaapiVideoDecodeAccelerator::GetSupportedProfiles(
    return profiles;
  }
  
@@ -24,11 +24,11 @@ Index: dev/media/gpu/vaapi/vaapi_video_decode_accelerator.cc
  VaapiVideoDecodeAccelerator::BufferAllocationMode
  VaapiVideoDecodeAccelerator::DecideBufferAllocationMode() {
  #if defined(USE_X11)
-Index: dev/media/gpu/vaapi/vaapi_video_decode_accelerator.h
-===================================================================
---- dev.orig/media/gpu/vaapi/vaapi_video_decode_accelerator.h
-+++ dev/media/gpu/vaapi/vaapi_video_decode_accelerator.h
-@@ -95,6 +95,8 @@ class MEDIA_GPU_EXPORT VaapiVideoDecodeA
+diff --git a/media/gpu/vaapi/vaapi_video_decode_accelerator.h b/media/gpu/vaapi/vaapi_video_decode_accelerator.h
+index 7a0d8c1fc..a69a6ee74 100644
+--- a/media/gpu/vaapi/vaapi_video_decode_accelerator.h
++++ b/media/gpu/vaapi/vaapi_video_decode_accelerator.h
+@@ -95,6 +95,8 @@ class MEDIA_GPU_EXPORT VaapiVideoDecodeAccelerator
    static VideoDecodeAccelerator::SupportedProfiles GetSupportedProfiles(
        const gpu::GpuDriverBugWorkarounds& workarounds);
  
@@ -37,28 +37,28 @@ Index: dev/media/gpu/vaapi/vaapi_video_decode_accelerator.h
    // DecodeSurfaceHandler implementation.
    scoped_refptr<VASurface> CreateSurface() override;
    void SurfaceReady(scoped_refptr<VASurface> va_surface,
-Index: dev/media/gpu/vaapi/vaapi_wrapper.cc
-===================================================================
---- dev.orig/media/gpu/vaapi/vaapi_wrapper.cc
-+++ dev/media/gpu/vaapi/vaapi_wrapper.cc
-@@ -1452,6 +1452,12 @@ bool VaapiWrapper::GetJpegDecodeSuitable
+diff --git a/media/gpu/vaapi/vaapi_wrapper.cc b/media/gpu/vaapi/vaapi_wrapper.cc
+index fceb409b4..ed71f7fa9 100644
+--- a/media/gpu/vaapi/vaapi_wrapper.cc
++++ b/media/gpu/vaapi/vaapi_wrapper.cc
+@@ -1451,6 +1451,12 @@ bool VaapiWrapper::GetJpegDecodeSuitableImageFourCC(unsigned int rt_format,
+   return true;
  }
  
- // static
++// static
 +bool VaapiWrapper::IsVppProfileSupported() {
 +  return VASupportedProfiles::Get().IsProfileSupported(kVideoProcess,
 +                                                    VAProfileNone);
 +}
 +
-+// static
+ // static
  bool VaapiWrapper::IsVppResolutionAllowed(const gfx::Size& size) {
    const VASupportedProfiles::ProfileInfo* profile_info =
-       VASupportedProfiles::Get().IsProfileSupported(kVideoProcess,
-Index: dev/media/gpu/vaapi/vaapi_wrapper.h
-===================================================================
---- dev.orig/media/gpu/vaapi/vaapi_wrapper.h
-+++ dev/media/gpu/vaapi/vaapi_wrapper.h
-@@ -196,6 +196,9 @@ class MEDIA_GPU_EXPORT VaapiWrapper
+diff --git a/media/gpu/vaapi/vaapi_wrapper.h b/media/gpu/vaapi/vaapi_wrapper.h
+index e4d5762f3..66040c105 100644
+--- a/media/gpu/vaapi/vaapi_wrapper.h
++++ b/media/gpu/vaapi/vaapi_wrapper.h
+@@ -197,6 +197,9 @@ class MEDIA_GPU_EXPORT VaapiWrapper
                                                 uint32_t preferred_fourcc,
                                                 uint32_t* suitable_fourcc);
  
